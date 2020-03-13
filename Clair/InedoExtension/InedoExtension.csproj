@@ -31,23 +31,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Inedo.Agents, Version=46.0.0.0, Culture=neutral, PublicKeyToken=9de986a2f8db80fc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Inedo.SDK.1.8.0-pre0004\lib\net452\Inedo.Agents.dll</HintPath>
-    </Reference>
     <Reference Include="Inedo.Agents.Client, Version=1000.0.0.0, Culture=neutral, PublicKeyToken=9de986a2f8db80fc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Inedo.SDK.1.8.0-pre0004\lib\net452\Inedo.Agents.Client.dll</HintPath>
+      <HintPath>..\packages\Inedo.SDK.1.6.2-pre0001\lib\net452\Inedo.Agents.Client.dll</HintPath>
     </Reference>
     <Reference Include="Inedo.ExecutionEngine, Version=1000.0.0.0, Culture=neutral, PublicKeyToken=68703f0e52007e75, processorArchitecture=MSIL">
-      <HintPath>..\packages\Inedo.SDK.1.8.0-pre0004\lib\net452\Inedo.ExecutionEngine.dll</HintPath>
+      <HintPath>..\packages\Inedo.SDK.1.6.2-pre0001\lib\net452\Inedo.ExecutionEngine.dll</HintPath>
     </Reference>
-    <Reference Include="Inedo.SDK, Version=1.8.0.0, Culture=neutral, PublicKeyToken=29fae5dec3001603, processorArchitecture=MSIL">
-      <HintPath>..\packages\Inedo.SDK.1.8.0-pre0004\lib\net452\Inedo.SDK.dll</HintPath>
+    <Reference Include="Inedo.SDK, Version=1.6.2.0, Culture=neutral, PublicKeyToken=29fae5dec3001603, processorArchitecture=MSIL">
+      <HintPath>..\packages\Inedo.SDK.1.6.2-pre0001\lib\net452\Inedo.SDK.dll</HintPath>
     </Reference>
     <Reference Include="InedoLib, Version=1000.0.0.0, Culture=neutral, PublicKeyToken=112cfb71329714a6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Inedo.SDK.1.8.0-pre0004\lib\net452\InedoLib.dll</HintPath>
+      <HintPath>..\packages\Inedo.SDK.1.6.2-pre0001\lib\net452\InedoLib.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Inedo.SDK.1.8.0-pre0004\lib\net452\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Inedo.SDK.1.6.2-pre0001\lib\net452\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -70,4 +67,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>powershell -Command "if ((Test-Path C:\LocalDev\Tools\inedoxpack\inedoxpack.exe) -And (Test-Path C:\LocalDev\ProGet\Extensions -PathType Container)) { C:\LocalDev\Tools\inedoxpack\inedoxpack.exe '$(TargetPath)' 'C:\LocalDev\ProGet\Extensions\$(TargetName).upack' 0.0.0 }"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
